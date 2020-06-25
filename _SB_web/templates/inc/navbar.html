@@ -1,0 +1,74 @@
+{% from "macro/modal.html" import login %}
+{% from "macro/forms.html" import sign_in, sign_out %}
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar {% if not main_page %}top-nav-collapse{%endif%}">
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="{{ url_for('idx') }}" target="_blank">
+        <strong>Smart Building</strong>
+        </a>
+
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('idx') }}">Home
+                <span class="sr-only">(current)</span>
+            </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" target="_blank">Building Map</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" target="_blank">Location</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" target="_blank">Users</a>
+            </li>
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item">
+                <a href="https://github.com/" class="nav-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+            </li>
+            {% if name %}
+            <li class="nav-item">
+                <a href="#" class="nav-link" style="margin-right: 4px" target="_blank">
+                    <i class="fas fa-users"></i>{{name.f_name}} {{name.l_name}}
+                </a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                {% if name %}
+                    {{ sign_out() }}
+                {% else %}
+                    {{ sign_in()}}
+                {% endif %}
+            </li>
+            {% if not name %}
+                <li class="nav-item">
+                    <a href="#" class="nav-link border border-light rounded" data-toggle="modal"
+                    data-target="#RegisterModal" style="margin-left: 4px">
+                        <i class="far fa-grin"></i>Sign Up
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+
+        </div>
+
+    </div>
+</nav>
+<!-- Navbar -->

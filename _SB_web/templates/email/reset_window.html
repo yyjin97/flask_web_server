@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<section class="mt-5 wow fadeIn" style="padding: 80px 0px">
+
+    {% if ShowNotMatch %}
+    <div class="note note-warning pb-1">
+        <ul class="woocommerce-error" role="alert">
+            <li>Passwords do not match.</li>
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="row mb-4">
+        <!--Grid column-->
+        <div class="col-md-6 mt-4 mb-4 mx-auto">
+            <!--Card-->
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header">Reset password</div>
+                    <!--Card content-->
+                    <div class="card-body">
+
+                        <form method="POST" action="/resetpwdb" class="woocommerce-ResetPassword lost_reset_password">
+
+                            <p>Enter a new password below.</p>
+
+                            <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
+                                <label for="password_1">New password <span class="required text-danger">*</span></label>
+                                <span class="password-input"><input type="password" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="password_1" id="password_1" aria-autocomplete="list"><span class="show-password-input"></span></span>
+                            </p>
+                            <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
+                                <label for="password_2">Re-enter new password <span class="required text-danger">*</span></label>
+                                <span class="password-input"><input type="password" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="password_2" id="password_2"><span class="show-password-input"></span></span>
+                            </p>
+
+                            <div class="clear"></div>
+
+                            <p class="woocommerce-form-row form-row">
+                                <span class="waves-input-wrapper waves-effect waves-light"><input type="submit" class="btn btn-primary" value="Save"></span>
+                            </p>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock main %}
+
+

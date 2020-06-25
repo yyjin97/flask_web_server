@@ -1,0 +1,14 @@
+
+<div style="font-size:16px; color:darkslategrey; border: 1px solid #ccc!important; width: 20cm;padding: 0.01em 16px; border-radius: 16px;"> 
+
+    <p style="font-size: 22px; color:black">Dear {{f_name}} {{l_name}},</p>      
+    <p>To reset your password, <a href="{{ url_for('reset_form', token=token,_external=True) }}" style="font-size: 20px;">click here</a></p>
+    <p></p>
+    <p/>If you have not requested a password reset simply ignore this message.
+    <p/>Thank you :)
+    <p></p>
+    <p style="font-size: 13px">- Smart Building - </p>
+    <p></p>
+        
+</div>
+    

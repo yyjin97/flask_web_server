@@ -1,0 +1,12 @@
+{% macro sign_in() %}
+    <a href="#" class="nav-link border border-light rounded waves-effect" data-toggle="modal" 
+        data-target="#LoginModal" onclick="rememberEmail()" style="margin-right: 2px">
+            <i class="fas fa-sign-in-alt"></i>Sign-In
+    </a>
+{% endmacro %}
+
+{% macro sign_out() %}
+    <a href="/logout" class="nav-link border border-light rounded waves-effect">
+        <i class="fas fa-sign-out-alt"></i>Sign-Out
+    </a>
+{% endmacro %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+            <script>
+            alert('{{message}}')
+            </script>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="col-md-6 mt-4 mb-4 mx-auto" style="padding: 80px 0px">
+        <!--Card-->
+        <div class="card">
+            <!-- Card header -->
+            <div class="card-header">Reset password</div>
+                <!--Card content-->
+                <div class="card-body">
+
+                    <form action="/sendemail" method="POST" class="woocommerce-ResetPassword lost_reset_password">
+
+                        <p>Lost your password? Please enter your email address. You will receive a number to confirm your identity via email.</p>
+
+                        <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
+                            <label for="user_login">email</label>
+                            <input class="woocommerce-Input woocommerce-Input--text input-text form-control mb-3" type="text" name="email" id="email">
+                        </p>
+
+                        <div class="clear"></div>
+
+                        <p class="woocommerce-form-row form-row">
+                            <span class="waves-input-wrapper waves-effect waves-light"><input type="submit" class="btn btn-mdb-color" value="Reset Password"></span>
+                        </p>
+                    </form>
+
+                </div>
+        </div>
+    </div>
+{% endblock %}

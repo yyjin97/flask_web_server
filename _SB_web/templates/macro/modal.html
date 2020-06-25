@@ -1,0 +1,111 @@
+{% macro modal(id, title, icon='', isShowFooter=True, ok_fn='') %}
+<!-- Modal -->
+<div class="modal fade" id="{{id}}" tabindex="-1" role="dialog"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"> 
+              <strong>
+                {% if icon %}
+                <i class="{{icon}}"></i>
+                {% endif %}
+                {{title}}
+              </strong>
+          </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {{ caller() }}
+      </div>
+      {% if isShowFooter %}
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" onclick="{{ok_fn}}" class="btn btn-primary">확인</button>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro login(modal_id) %}
+{% call modal(modal_id, 'Sign In', 'fas fa-sign-in-alt', False) %}
+  <!-- Default form login -->
+  <form class="text-center border border-light p-5" action="/login" method="POST">
+      <p class="h4 mb-4">Sign in</p>
+
+      <!-- Email -->
+      <input type="email" id="defaultLoginFormEmail" name="user_id" class="form-control mb-4" placeholder="E-mail">
+
+      <!-- Password -->
+      <input type="password" id="defaultLoginFormPassword" name="user_pw" class="form-control mb-4" placeholder="Password">
+
+      <div class="d-flex justify-content-around">
+          <div>
+              <!-- Remember me -->
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember" name="IsRemember">
+                  <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+              </div>
+          </div>
+          <div>
+              <!-- Forgot password -->
+              <a href="resetpw" class="blue-grey-text"><strong>Forgot password?</strong></a>
+          </div>
+      </div>
+
+      <!-- Sign in button -->
+      <button class="btn btn-mdb-color btn-block my-4" type="submit">Sign in</button>
+
+      <!-- Register -->
+      <p>Not a member?&nbsp;&nbsp;
+          <a href="Javascript: ChangeModal('LoginModal','RegisterModal');" class="blue-grey-text"><strong>Register</strong></a>
+      </p>
+  </form>
+  <!-- Default form login -->
+{% endcall %}
+{% endmacro %}
+
+{% macro register(modal_id) %}
+  {% call modal(modal_id, 'Register', 'far fa-grin', False) %}
+    <!-- Default form register -->
+    <form class="text-center border border-light p-5" action="/register" method="POST">
+
+        <p class="h4 mb-4">Sign up</p>
+
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- First name -->
+                <input type="text" id="RegisterFormFirstName" name="first_name" class="form-control" placeholder="First name">
+            </div>
+            <div class="col">
+                <!-- Last name -->
+                <input type="text" id="RegisterFormLastName" name="last_name" class="form-control" placeholder="Last name">
+            </div>
+        </div>
+
+        <!-- E-mail -->
+        <input type="email" id="RegisterFormEmail" name="user_id" class="form-control mb-4" placeholder="E-mail">
+
+        <!-- Password -->
+        <input type="password" id="RegisterFormPassword" name="user_pw" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+        <small id="RegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+            At least 8 characters and 1 digit
+        </small>
+
+        <!-- Phone number -->
+        <input type="text" id="RegisterPhonePassword" name="phone_num" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+        <small id="RegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+            Optional - for two step authentication
+        </small>
+
+        <!-- Sign up button -->
+        <button class="btn btn-mdb-color my-4 btn-block" type="submit">Sign up</button>
+
+    </form>
+    <!-- Default form register -->
+  {% endcall %}
+{% endmacro %}
