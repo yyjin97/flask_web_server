@@ -29,9 +29,7 @@ def reset_form(token):
     try:
         id = jwt.decode(token, app.config['JWT_SECRET_KEY'], algorithms=['HS256'])['user_id']
     except Exception as e:
-        print("Error : ", e, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11")
         return render_template("base.html", content="Page Timeout !")
-    
     user = request.cookies.get('resetEmail')
     if((not user) or (user != id)):
         flash("Access denied !")
